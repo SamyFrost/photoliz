@@ -3,7 +3,7 @@ import { ButtonLink, ExternalButton } from "@/components/ui/ButtonLink";
 import { InstagramIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { GoldRule, Reveal } from "@/components/ui/Reveal";
 import type { SiteSettings } from "@/lib/types";
-import { instagramLink, whatsappLink } from "@/lib/site";
+import { asset, instagramLink, whatsappLink } from "@/lib/site";
 
 export async function FinalCta({ settings }: { settings: SiteSettings }) {
   const t = await getTranslations("home");
@@ -14,7 +14,7 @@ export async function FinalCta({ settings }: { settings: SiteSettings }) {
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.07]"
-        style={{ backgroundImage: "url(/brand/pholiz-pattern.svg)", backgroundSize: "240px" }}
+        style={{ backgroundImage: `url(${asset("/brand/pholiz-pattern.svg")})`, backgroundSize: "240px" }}
       />
       <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 py-28 text-center md:px-10 md:py-40">
         <Reveal>

@@ -11,7 +11,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { CameraCursor } from "@/components/layout/CameraCursor";
 import { getSettings } from "@/lib/content";
-import { SITE } from "@/lib/site";
+import { asset, SITE } from "@/lib/site";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       type: "website",
       siteName: "PHOLIZ",
       locale: locale === "es" ? "es_US" : "en_US",
-      images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "PHOLIZ · PHOTOGRAPHY ∞ FILMS" }],
+      images: [{ url: asset("/images/og.jpg"), width: 1200, height: 630, alt: "PHOLIZ · PHOTOGRAPHY ∞ FILMS" }],
     },
     alternates: { languages: { es: "/", en: "/en" } },
   };
@@ -49,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
     name: "PHOLIZ · Photography ∞ Films",
     description: "Photographer and filmmaker for portraits, weddings, quinceañeras, events and brands.",
     url: SITE.url,
-    image: `${SITE.url}/images/og.jpg`,
+    image: `${SITE.url}${asset("/images/og.jpg")}`,
     telephone: settings.whatsapp,
     email: settings.email,
     address: { "@type": "PostalAddress", addressLocality: "Tampa", addressRegion: "FL", addressCountry: "US" },

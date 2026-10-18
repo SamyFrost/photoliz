@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import type { MetadataRoute } from "next";
 import { getPathname } from "@/i18n/navigation";
 import { routing, type AppPathname } from "@/i18n/routing";

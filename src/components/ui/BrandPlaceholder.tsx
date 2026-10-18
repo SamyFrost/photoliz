@@ -1,4 +1,5 @@
 import { Mark } from "@/components/brand/Logo";
+import { asset } from "@/lib/site";
 
 /**
  * Stand-in for a photo that hasn't been uploaded yet: the darkroom violet with the P·L mark,
@@ -11,7 +12,7 @@ export function BrandPlaceholder({ label, className = "" }: { label?: string; cl
     >
       <div
         className="absolute inset-0 opacity-[0.08]"
-        style={{ backgroundImage: "url(/brand/pholiz-pattern.svg)", backgroundSize: "180px" }}
+        style={{ backgroundImage: `url(${asset("/brand/pholiz-pattern.svg")})`, backgroundSize: "180px" }}
         aria-hidden="true"
       />
       <Mark className="relative h-10 w-auto opacity-70" title="" />

@@ -1,0 +1,63 @@
+# Builds the static copy of the site and publishes it on GitHub Pages.
+# Needs: repo public (or GitHub Pro) and Settings → Pages → Source: "GitHub Actions".
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # Lets a Sanity webhook trigger a rebuild later (POST /repos/{owner}/{repo}/dispatches).
+  repository_dispatch:
+    types: [sanity-publish]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_STATIC_EXPORT: "1"
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+      NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET || 'production' }}
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Pages only serves files: drop the parts that need a server (language proxy, API, Studio).
+      - run: rm -rf src/proxy.ts src/app/api src/app/studio
+      - run: npm run build
+      - name: Send the bare site URL to the Spanish home
+        run: |
+          cat > out/index.html <<'HTML'
+          <!doctype html><html lang="es"><head><meta charset="utf-8">
+          <title>PHOLIZ</title><meta http-equiv="refresh" content="0; url=es/">
+          <script>location.replace("es/")</script></head>
+          <body style="background:#23143a"><a href="es/" style="color:#c9a45c">PHOLIZ</a></body></html>
+          HTML
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

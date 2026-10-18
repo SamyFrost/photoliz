@@ -32,6 +32,20 @@ Otros archivos clave:
 - Contenido editable: esquemas en `src/sanity/schemas/` y lectura en `src/lib/content.ts`.
 - Intro: `src/components/intro/IntroSting.tsx`. Se muestra una vez por sesión, trae botón "Saltar" y respeta reduced-motion.
 
+## Vista previa en GitHub Pages
+
+El workflow `.github/workflows/pages.yml` publica una copia estática del sitio en **https://samyfrost.github.io/photoliz/** cada vez que hay un push a `main`. Se puede lanzar a mano desde *Actions → GitHub Pages → Run workflow*.
+
+Para que funcione, una sola vez:
+1. Hacer el repo público (*Settings → General → Danger Zone → Change visibility*), o tener GitHub Pro.
+2. En *Settings → Pages → Build and deployment → Source*, elegir **GitHub Actions**.
+
+Diferencias con la versión en Vercel:
+- Las direcciones en inglés usan las mismas rutas que en español (`/en/portafolio/`).
+- El formulario abre WhatsApp con el mensaje ya escrito en vez de enviar un correo.
+- No incluye el panel `/studio`.
+- Las fotos nuevas de Sanity aparecen al reconstruir: con *Run workflow*, o con un webhook de Sanity que haga POST a `https://api.github.com/repos/SamyFrost/photoliz/dispatches` con `{"event_type":"sanity-publish"}` y un token de GitHub.
+
 ---
 
 ## Puesta en marcha paso a paso

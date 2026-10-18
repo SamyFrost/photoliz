@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import type { About, Category, Film, Photo, ServicePackage, SiteSettings, Testimonial } from "@/lib/types";
-import { SITE } from "../lib/site"; // relative so `npm run seed` resolves it too
+import { asset, SITE } from "../lib/site"; // relative so `npm run seed` resolves it too
 
 /**
  * Content shown until the Sanity project is connected (or while a type has no documents).
@@ -11,13 +11,13 @@ type L = Record<Locale, string>;
 const t = (l: L, locale: Locale) => l[locale];
 
 const heroImage = {
-  src: "/images/liz-hero.webp",
+  src: asset("/images/liz-hero.webp"),
   alt: "",
   width: 1100,
   height: 1458,
 };
 const portrait = {
-  src: "/images/liz-retrato.webp",
+  src: asset("/images/liz-retrato.webp"),
   alt: "",
   width: 1200,
   height: 1600,

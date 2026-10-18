@@ -89,7 +89,8 @@
     "error": "No se pudo enviar. Escríbeme por WhatsApp y te respondo enseguida.",
     "invalid": "Revisa los campos marcados.",
     "orWrite": "O escríbeme directo",
-    "whatsappText": "Hola PHOLIZ, quiero reservar una sesión."
+    "whatsappText": "Hola PHOLIZ, quiero reservar una sesión.",
+    "whatsappOpened": "Se abrió WhatsApp con tu mensaje listo. Solo dale enviar."
   },
   "footer": {
     "tagline": "Fotografía y video sin fin.",

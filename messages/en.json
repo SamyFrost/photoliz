@@ -89,7 +89,8 @@
     "error": "It couldn't be sent. Message me on WhatsApp and I'll reply right away.",
     "invalid": "Please check the highlighted fields.",
     "orWrite": "Or write to me directly",
-    "whatsappText": "Hi PHOLIZ, I'd like to book a session."
+    "whatsappText": "Hi PHOLIZ, I'd like to book a session.",
+    "whatsappOpened": "WhatsApp opened with your message ready. Just tap send."
   },
   "footer": {
     "tagline": "Photography and film, endlessly.",

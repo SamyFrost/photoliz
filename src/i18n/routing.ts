@@ -1,16 +1,21 @@
 import { defineRouting } from "next-intl/routing";
 
+// The GitHub Pages copy has no proxy to rewrite translated URLs, so there every path keeps its
+// Spanish name and always carries the language prefix (/es/…, /en/…).
+const STATIC = process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
+const t = <T extends string>(es: T, en: string) => (STATIC ? es : { es, en });
+
 export const routing = defineRouting({
   locales: ["es", "en"],
   defaultLocale: "es",
-  localePrefix: "as-needed",
+  localePrefix: STATIC ? "always" : "as-needed",
   pathnames: {
     "/": "/",
-    "/portafolio": { es: "/portafolio", en: "/portfolio" },
-    "/portafolio/[categoria]": { es: "/portafolio/[categoria]", en: "/portfolio/[categoria]" },
-    "/servicios": { es: "/servicios", en: "/services" },
-    "/sobre-mi": { es: "/sobre-mi", en: "/about" },
-    "/contacto": { es: "/contacto", en: "/contact" },
+    "/portafolio": t("/portafolio", "/portfolio"),
+    "/portafolio/[categoria]": t("/portafolio/[categoria]", "/portfolio/[categoria]"),
+    "/servicios": t("/servicios", "/services"),
+    "/sobre-mi": t("/sobre-mi", "/about"),
+    "/contacto": t("/contacto", "/contact"),
   },
 });
 

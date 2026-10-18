@@ -6,9 +6,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
 import { Arrow, buttonClass } from "@/components/ui/ButtonLink";
 import { WhatsAppIcon } from "@/components/ui/Icons";
-import { whatsappLink } from "@/lib/site";
+import { IS_STATIC, whatsappLink } from "@/lib/site";
 
-type Status = "idle" | "sending" | "sent" | "error" | "invalid";
+type Status = "idle" | "sending" | "sent" | "whatsapp" | "error" | "invalid";
 
 const field =
   "peer w-full border-b border-line bg-transparent pb-3 pt-6 text-[16px] text-ink outline-none transition-colors placeholder:text-transparent focus:border-gold-light aria-[invalid=true]:border-[#fe8477]";
@@ -24,7 +24,14 @@ export function ContactForm({ services, whatsapp }: { services: string[]; whatsa
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    if (IS_STATIC) {
+      // No server on the static copy: hand the message to WhatsApp, already written.
+      const lines = [t("whatsappText"), "", data.name, data.email, data.phone, data.service, data.date, "", data.message];
+      window.open(whatsappLink(whatsapp, lines.filter((l) => l !== undefined && l !== null).join("\n").trim()), "_blank", "noopener");
+      setStatus("whatsapp");
+      return;
+    }
     setStatus("sending");
     setBad([]);
     try {
@@ -96,16 +103,22 @@ export function ContactForm({ services, whatsapp }: { services: string[]; whatsa
           <Arrow />
         </button>
         <AnimatePresence mode="wait">
-          {(status === "sent" || status === "error" || status === "invalid") && (
+          {(status === "sent" || status === "whatsapp" || status === "error" || status === "invalid") && (
             <motion.p
               key={status}
               role="status"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className={`text-[15px] ${status === "sent" ? "text-[#3fc6a0]" : "text-[#fe8477]"}`}
+              className={`text-[15px] ${status === "sent" || status === "whatsapp" ? "text-[#3fc6a0]" : "text-[#fe8477]"}`}
             >
-              {status === "sent" ? `✓ ${t("sent")}` : status === "invalid" ? t("invalid") : t("error")}
+              {status === "sent"
+                ? `✓ ${t("sent")}`
+                : status === "whatsapp"
+                  ? t("whatsappOpened")
+                  : status === "invalid"
+                    ? t("invalid")
+                    : t("error")}
               {status === "error" && (
                 <a href={whatsappLink(whatsapp, t("whatsappText"))} target="_blank" rel="noopener noreferrer" className="ml-2 inline-flex items-center gap-1.5 text-gold-light underline">
                   <WhatsAppIcon className="h-4 w-4" /> WhatsApp
