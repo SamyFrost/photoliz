@@ -4,7 +4,6 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { jost, lexendZetta } from "../fonts";
-import { introBootScript } from "@/components/intro/IntroProvider";
 import { IntroSting } from "@/components/intro/IntroSting";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -54,15 +53,16 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
     email: settings.email,
     address: { "@type": "PostalAddress", addressLocality: "Tampa", addressRegion: "FL", addressCountry: "US" },
     areaServed: "Tampa Bay, Florida",
+    founder: { "@type": "Person", name: SITE.owner, jobTitle: "Photographer" },
     sameAs: [`https://instagram.com/${settings.instagram}`],
   };
 
   return (
     <html lang={locale} className={`${lexendZetta.variable} ${jost.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
-      </head>
       <body className="min-h-dvh">
+        <noscript>
+          <style>{".intro-overlay{display:none!important}"}</style>
+        </noscript>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <NextIntlClientProvider>
           <IntroSting />

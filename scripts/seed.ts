@@ -48,6 +48,7 @@ async function run() {
   tx.createIfNotExists({
     _id: "about",
     _type: "about",
+    name: es.about.name,
     title: both(es.about.title, en.about.title),
     body: es.about.body.map((p, i) => ({ _key: `p${i}`, _type: "localeText", es: p, en: en.about.body[i] })),
     values: es.about.values.map((v, i) => ({

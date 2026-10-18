@@ -151,7 +151,7 @@ const services: (Omit<ServicePackage, "name" | "includes" | "delivery"> & {
 export const fallback = {
   settings(locale: Locale): SiteSettings {
     return {
-      heroImage: { ...heroImage, alt: t({ es: "La fotógrafa de PHOLIZ con su cámara", en: "The PHOLIZ photographer with her camera" }, locale) },
+      heroImage: { ...heroImage, alt: t({ es: "Clara Liz Correa, fotógrafa de PHOLIZ, con su cámara", en: "Clara Liz Correa, PHOLIZ photographer, with her camera" }, locale) },
       tagline: t({ es: "Tu historia, en luz.", en: "Your story, in light." }, locale),
       intro: t(
         {
@@ -193,7 +193,7 @@ export const fallback = {
   },
   about(locale: Locale): About {
     return {
-      name: "",
+      name: "Clara Liz Correa",
       title: t({ es: "Detrás de la cámara", en: "Behind the camera" }, locale),
       body: {
         es: [
@@ -205,7 +205,7 @@ export const fallback = {
           "I work with natural light, calm framing and gentle direction, so you feel like yourself in front of the camera. Portraits, events, weddings, brands and films, all in one style.",
         ],
       }[locale],
-      portrait: { ...portrait, alt: t({ es: "Retrato de la fotógrafa de PHOLIZ", en: "Portrait of the PHOLIZ photographer" }, locale) },
+      portrait: { ...portrait, alt: t({ es: "Retrato de Clara Liz Correa, fotógrafa de PHOLIZ", en: "Portrait of Clara Liz Correa, PHOLIZ photographer" }, locale) },
       values: [
         {
           title: t({ es: "Luz cuidada", en: "Careful light" }, locale),

@@ -69,9 +69,12 @@ export function Hero({ settings }: { settings: SiteSettings }) {
       {/* portrait */}
       <motion.div
         style={reduce ? undefined : { y: photoY }}
-        className="pointer-events-none absolute left-1/2 top-16 w-[min(100vw,520px)] -translate-x-1/2 md:bottom-0 md:left-auto md:right-[6%] md:top-auto md:w-[min(44vw,620px)] md:translate-x-0"
+        // Desktop: the height is capped to what is left under the navbar, and the width follows the photo's
+        // own proportions, so the head can never run off the top on short screens.
+        className="pointer-events-none absolute left-1/2 top-16 w-[min(100vw,520px)] -translate-x-1/2 md:bottom-0 md:left-auto md:right-[6%] md:top-auto md:aspect-[1100/1458] md:h-[min(calc(100svh_-_104px),62vw)] md:w-auto md:translate-x-0"
       >
         <motion.div
+          className="md:h-full"
           initial={reduce ? false : { opacity: 0, y: 80, scale: 1.04 }}
           animate={show ? { opacity: 1, y: 0, scale: 1 } : undefined}
           transition={{ duration: 1.4, delay: 0.35, ease: EXPRESSIVE }}
@@ -79,8 +82,8 @@ export function Hero({ settings }: { settings: SiteSettings }) {
           <Photo
             image={settings.heroImage}
             priority
-            sizes="(min-width: 768px) 44vw, 100vw"
-            className="h-auto w-full drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+            sizes="(min-width: 768px) 46vw, 100vw"
+            className="h-auto w-full drop-shadow-[0_30px_60px_rgba(0,0,0,0.45)] md:h-full md:object-contain md:object-bottom"
           />
         </motion.div>
       </motion.div>
@@ -97,7 +100,7 @@ export function Hero({ settings }: { settings: SiteSettings }) {
         style={reduce ? undefined : { y: textY, opacity: fade }}
         className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col justify-end px-5 pb-10 pt-28 md:justify-center md:px-10 md:pb-0"
       >
-        <div className="max-w-xl">
+        <div className="max-w-xl md:max-w-[min(36rem,46vw)]">
           <motion.p className="eyebrow" {...enter(0.5)}>
             {t("eyebrow")}
           </motion.p>

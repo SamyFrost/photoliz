@@ -21,6 +21,7 @@ export async function AboutPreview({ about }: { about: About }) {
       </div>
       <div>
         <SectionHeading index="03" eyebrow={t("aboutEyebrow")} title={about.title} />
+        {about.name && <p className="mt-5 text-[19px] text-gold-light">{about.name}</p>}
         <Reveal delay={0.1} className="mt-8 space-y-5 text-[17px] leading-[29px] text-ink/80">
           {about.body.slice(0, 2).map((p, i) => (
             <p key={i}>{p}</p>

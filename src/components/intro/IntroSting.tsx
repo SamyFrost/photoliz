@@ -26,7 +26,14 @@ export function IntroSting() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (root.dataset.intro === "done" || !overlay.current) return;
+    if (!overlay.current) return;
+    try {
+      // Already played this session: the provider marks it done, nothing to animate.
+      if (root.dataset.intro === "done" || sessionStorage.getItem("pholiz-intro")) {
+        finish();
+        return;
+      }
+    } catch {}
 
     const q = gsap.utils.selector(overlay.current);
     const pPath = q<SVGPathElement>("[data-p]")[0];
@@ -40,6 +47,7 @@ export function IntroSting() {
     };
 
     if (reduce) {
+      overlay.current.dataset.ready = "true";
       tl.current = gsap
         .timeline({ onComplete: done })
         .to(overlay.current, { opacity: 0, duration: 0.4, delay: 0.9 });
@@ -64,6 +72,9 @@ export function IntroSting() {
     gsap.set(q("[data-letter]"), { opacity: 0, x: -70 });
     gsap.set(q("[data-glyph]"), { opacity: 0, y: 10 });
     gsap.set(infinity, { strokeDasharray: infLen, strokeDashoffset: infLen, fillOpacity: 0 });
+
+    // Everything is in its starting pose: now the logo and the Skip button may show.
+    overlay.current.dataset.ready = "true";
 
     const navLogo = () => document.querySelector<HTMLElement>("[data-nav-logo]");
 

@@ -58,7 +58,8 @@ export function Lightbox({
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={photo.id}
-              className="relative h-[78vh] w-[92vw] max-w-6xl cursor-grab active:cursor-grabbing"
+              data-cursor="camera"
+              className="relative h-[78vh] w-[92vw] max-w-6xl"
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}

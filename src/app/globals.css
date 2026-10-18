@@ -121,7 +121,17 @@ html.lenis body {
   }
 }
 
-/* The intro already ran this session (set before paint by the boot script). */
+/* The intro overlay is server-rendered as a plain night-violet cover; its logo and Skip button
+   only appear once the animation is armed (data-ready, set after hydration). */
+.intro-overlay svg,
+.intro-overlay button {
+  visibility: hidden;
+}
+.intro-overlay[data-ready="true"] svg,
+.intro-overlay[data-ready="true"] button {
+  visibility: visible;
+}
+/* The intro already ran this session (set after hydration). */
 html[data-intro="done"] .intro-overlay {
   display: none;
 }
@@ -129,4 +139,107 @@ html[data-intro="done"] .intro-overlay {
 @keyframes scrollcue {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(200%); }
+}
+
+/* ── Camera focus cursor (see CameraCursor.tsx) ───────────────────────────── */
+html.has-focus-cursor,
+html.has-focus-cursor * {
+  cursor: none !important;
+}
+html.has-focus-cursor input,
+html.has-focus-cursor textarea,
+html.has-focus-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
+html.has-focus-cursor select,
+html.has-focus-cursor iframe {
+  cursor: auto !important;
+}
+
+.focus-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  pointer-events: none;
+  color: var(--gold-light);
+  opacity: 1;
+  transition: opacity 200ms var(--ease-standard);
+  --fc-size: 26px;
+  --fc-dot: 4px;
+  --fc-ring: 0;
+}
+.focus-cursor[data-mode="hidden"],
+.focus-cursor[data-mode="native"] {
+  opacity: 0;
+}
+.focus-cursor[data-mode="link"] {
+  --fc-size: 18px;
+  --fc-dot: 8px;
+}
+.focus-cursor[data-mode="photo"] {
+  --fc-size: 58px;
+  --fc-dot: 4px;
+  --fc-ring: 1;
+}
+.focus-cursor[data-tone="dark"] {
+  color: var(--background);
+}
+.focus-cursor[data-tone="dark"] .focus-cursor__box {
+  filter: none;
+}
+.focus-cursor[data-tone="dark"] .focus-cursor__dot {
+  box-shadow: none;
+}
+.focus-cursor[data-down="true"] {
+  color: #fff;
+}
+.focus-cursor[data-down="true"][data-tone="dark"] {
+  color: #000;
+}
+
+.focus-cursor__pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+.focus-cursor__box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fc-size);
+  height: var(--fc-size);
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    width 320ms var(--ease-expressive),
+    height 320ms var(--ease-expressive),
+    transform 140ms var(--ease-standard);
+  filter: drop-shadow(0 0 1px rgba(23, 12, 40, 0.85)) drop-shadow(0 0 3px rgba(23, 12, 40, 0.45));
+}
+.focus-cursor[data-down="true"] .focus-cursor__box {
+  transform: translate(-50%, -50%) scale(0.62);
+}
+.focus-cursor__box svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.focus-cursor__ring {
+  opacity: var(--fc-ring);
+  transition: opacity 240ms var(--ease-standard);
+}
+.focus-cursor__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fc-dot);
+  height: var(--fc-dot);
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 0 0 1px rgba(23, 12, 40, 0.7);
+  transform: translate(-50%, -50%);
+  transition:
+    width 200ms var(--ease-standard),
+    height 200ms var(--ease-standard);
 }

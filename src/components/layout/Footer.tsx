@@ -67,7 +67,7 @@ export async function Footer({ settings }: { settings: SiteSettings }) {
       </div>
       <div className="mx-auto flex max-w-[1440px] flex-col gap-2 border-t border-line/40 px-5 py-6 text-[13px] text-muted md:flex-row md:justify-between md:px-10">
         <span>
-          © {year} PHOLIZ · {t("rights")}
+          © {year} PHOLIZ · Clara Liz Correa · {t("rights")}
         </span>
         <span className="tracking-[0.2em]">PHOTOGRAPHY ∞ FILMS</span>
       </div>
