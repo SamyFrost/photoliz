@@ -5,8 +5,11 @@
  *   npx sanity login
  *   npm run seed
  */
+import { createReadStream } from "node:fs";
+import { join } from "node:path";
 import { getCliClient } from "sanity/cli";
 import { fallback } from "../src/content/fallback";
+import { PORTFOLIO } from "../src/content/portfolio";
 
 const client = getCliClient({ apiVersion: "2026-09-01" });
 const both = (es: string, en: string) => ({ _type: "localeString", es, en });
@@ -65,7 +68,26 @@ async function run() {
     location: es.settings.location,
   });
   await tx.commit();
-  console.log("Listo: contenido inicial creado en Sanity.");
+
+  // The portfolio photos already on the site, uploaded so the photographer can reorder,
+  // replace or delete them from the Studio. Skips any photo that already exists.
+  for (const [i, p] of PORTFOLIO.entries()) {
+    const id = `photo-${p.file}`;
+    if (await client.getDocument(id)) continue;
+    const asset = await client.assets.upload("image", createReadStream(join(process.cwd(), "public/images/portfolio", `${p.file}.webp`)), {
+      filename: `${p.file}.webp`,
+    });
+    await client.create({
+      _id: id,
+      _type: "photo",
+      orderRank: rank(i),
+      image: { _type: "photoImage", asset: { _type: "reference", _ref: asset._id }, alt: both(p.alt.es, p.alt.en) },
+      category: { _type: "reference", _ref: `category-${p.category}` },
+      featured: p.featured,
+    });
+    console.log(`  foto subida: ${p.file}`);
+  }
+  console.log("Listo: contenido inicial y fotos creados en Sanity.");
 }
 
 run().catch((e) => {

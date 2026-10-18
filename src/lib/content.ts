@@ -66,7 +66,11 @@ export const getPhotos = cache(
       const image = toImg(p.image, p.title ?? "PHOLIZ");
       return image ? [{ ...p, image }] : [];
     });
-    return listOr(photos, fallback.photos());
+    // Built-in photos only stand in until Sanity has some; same filters as the query.
+    const builtIn = fallback
+      .photos(locale)
+      .filter((p) => (!opts.category || p.category === opts.category) && (!opts.featured || p.featured));
+    return photos.length > 0 ? photos : builtIn;
   },
 );
 

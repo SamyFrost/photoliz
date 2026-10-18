@@ -1,6 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import type { About, Category, Film, Photo, ServicePackage, SiteSettings, Testimonial } from "@/lib/types";
-import { asset, SITE } from "../lib/site"; // relative so `npm run seed` resolves it too
+import { asset, SITE } from "../lib/site";
+import { PORTFOLIO } from "./portfolio"; // relative so `npm run seed` resolves it too
 
 /**
  * Content shown until the Sanity project is connected (or while a type has no documents).
@@ -173,8 +174,13 @@ export const fallback = {
   categories(locale: Locale): Category[] {
     return categories.map((c) => ({ slug: c.slug, title: t(c.title, locale), description: t(c.description, locale), cover: null }));
   },
-  photos(): Photo[] {
-    return [];
+  photos(locale: Locale): Photo[] {
+    return PORTFOLIO.map((p) => ({
+      id: p.file,
+      category: p.category,
+      featured: p.featured,
+      image: { src: asset(`/images/portfolio/${p.file}.webp`), alt: p.alt[locale], width: p.width, height: p.height, position: p.focus },
+    }));
   },
   films(): Film[] {
     return [];

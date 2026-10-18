@@ -54,7 +54,7 @@ Diferencias con la versión en Vercel:
 1. Crear una cuenta en <https://www.sanity.io> (gratis) y un proyecto nuevo con dataset `production`.
 2. Copiar el **Project ID** en `NEXT_PUBLIC_SANITY_PROJECT_ID` (local y en Vercel).
 3. En *sanity.io/manage → API → CORS origins*, agregar `http://localhost:3000` y `https://pholiz.com` con **Allow credentials** activado.
-4. Cargar el contenido inicial (categorías, paquetes, "Sobre mí" y ajustes):
+4. Cargar el contenido inicial (categorías, paquetes, "Sobre mí", ajustes y las 13 fotos del portafolio):
    ```bash
    npx sanity login
    npm run seed

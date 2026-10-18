@@ -2,20 +2,22 @@ import { Photo } from "@/components/ui/Photo";
 import { MaskReveal } from "@/components/ui/Reveal";
 import type { Photo as PhotoT } from "@/lib/types";
 
+// Seven photos fill a 4 × 3 grid exactly: a big square, a tall one, a wide one and four singles.
+// On phones (2 columns) the seventh is hidden so six photos fill three rows.
 const SPANS = [
   "md:col-span-2 md:row-span-2",
   "",
-  "",
   "md:row-span-2",
+  "",
   "md:col-span-2",
   "",
-  "",
+  "hidden md:block",
 ];
 
 /** Editorial grid of the photos marked "Destacar en el inicio". */
 export function FeaturedMosaic({ photos }: { photos: PhotoT[] }) {
   return (
-    <div className="grid auto-rows-[180px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-5">
+    <div className="grid auto-rows-[200px] grid-cols-2 gap-3 md:auto-rows-[260px] md:grid-cols-4 md:gap-5">
       {photos.map((p, i) => (
         <MaskReveal key={p.id} delay={(i % 4) * 0.08} className={`rounded-[6px] bg-surface ${SPANS[i] ?? ""}`}>
           <div data-cursor="camera" className="group absolute inset-0">

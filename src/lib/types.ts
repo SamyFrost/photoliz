@@ -20,6 +20,7 @@ export type Photo = {
   image: Img;
   category: string;
   title?: string;
+  featured?: boolean;
 };
 
 export type Film = {
