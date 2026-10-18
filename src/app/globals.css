@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* PhoLiz brand tokens (dark theme of the brand kit: violeta noche is the darkroom). */
+:root {
+  --background: #23143a;
+  --surface: #2e1f47;
+  --surface-alt: #3b2b56;
+  --border: #4d3d69;
+  --text: #f3f3f5;
+  --text-muted: #a2a0a9;
+  --gold: #a8823f;
+  --gold-light: #c9a45c;
+  --deep: #170c28;
+  --focus: #c9a45c;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-expressive: cubic-bezier(0.3, 0, 0, 1);
+  --duration-fast: 170ms;
+  --duration-base: 290ms;
+  --duration-slow: 480ms;
+  --duration-slower: 770ms;
+}
+
+@theme inline {
+  --color-night: var(--background);
+  --color-deep: var(--deep);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--text-muted);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --font-display: var(--font-display), Arial, sans-serif;
+  --font-sans: var(--font-text), Arial, sans-serif;
+  --ease-expressive: var(--ease-expressive);
+  --ease-standard: var(--ease-standard);
+}
+
+html {
+  background: var(--background);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-text), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Display type: Lexend Zetta 200, upper case, wide tracking (brand typography). */
+.font-display {
+  font-family: var(--font-display), Arial, sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-text), Arial, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+/* Fine grain over the darkroom so large violet fields don't band. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The intro already ran this session (set before paint by the boot script). */
+html[data-intro="done"] .intro-overlay {
+  display: none;
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}

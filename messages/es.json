@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "PHOLIZ · Fotografía y films en Tampa, FL",
+    "description": "Retratos, bodas, quinceañeras, eventos, contenido para marcas y films con luz limpia y un acabado elegante. Tampa, Florida."
+  },
+  "nav": {
+    "home": "Inicio",
+    "portfolio": "Portafolio",
+    "services": "Servicios",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "book": "Reserva tu sesión",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "English",
+    "languageShort": "EN"
+  },
+  "intro": {
+    "skip": "Saltar"
+  },
+  "hero": {
+    "eyebrow": "Fotografía ∞ Films · Tampa, FL",
+    "cta": "Reserva tu sesión",
+    "secondary": "Ver portafolio",
+    "scroll": "Desliza"
+  },
+  "home": {
+    "portfolioEyebrow": "Portafolio",
+    "portfolioTitle": "Historias en luz",
+    "portfolioCta": "Ver todo el portafolio",
+    "servicesEyebrow": "Servicios",
+    "servicesTitle": "Sesiones con cuidado de autor",
+    "servicesText": "Paquetes claros, tiempos de entrega claros y una sola forma de mirar: la tuya, en su mejor luz.",
+    "servicesCta": "Ver catálogo completo",
+    "aboutEyebrow": "Sobre mí",
+    "aboutCta": "Conóceme",
+    "testimonialsEyebrow": "Testimonios",
+    "testimonialsTitle": "Lo que se queda",
+    "instagramTitle": "Sígueme en Instagram",
+    "ctaTitle": "Guarda quién eres hoy.",
+    "ctaText": "Cuéntame qué tienes en mente y te respondo con fechas y paquetes.",
+    "marquee": "FOTOGRAFÍA"
+  },
+  "portfolio": {
+    "title": "Portafolio",
+    "subtitle": "Retratos, celebraciones, marcas y films con un mismo estilo.",
+    "all": "Todo",
+    "empty": "Muy pronto: nuevas historias en esta categoría.",
+    "placeholder": "Foto próximamente",
+    "view": "Ver galería",
+    "films": "Films",
+    "play": "Reproducir",
+    "close": "Cerrar",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Elige un punto de partida. Cada sesión se ajusta a ti.",
+    "from": "Desde",
+    "ask": "Consultar",
+    "favorite": "Favorito",
+    "whatsapp": "Cotizar por WhatsApp",
+    "quote": "Pedir cotización",
+    "whatsappText": "Hola PHOLIZ, quiero cotizar: {service}",
+    "note": "Los precios son un punto de partida; cada cotización se ajusta a la fecha, lugar y horas de cobertura."
+  },
+  "about": {
+    "title": "Sobre mí",
+    "values": "Cómo trabajo",
+    "gear": "Con mi Canon en la mano y la luz a favor.",
+    "cta": "Trabajemos juntos",
+    "hello": "HOLA"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Reserva tu sesión o pregunta lo que necesites. Respondo rápido.",
+    "name": "Nombre",
+    "email": "Correo",
+    "phone": "Teléfono (opcional)",
+    "service": "Tipo de sesión",
+    "servicePlaceholder": "Elige una opción",
+    "other": "Otro",
+    "date": "Fecha aproximada (opcional)",
+    "message": "Cuéntame tu idea",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "sent": "¡Gracias! Te escribo muy pronto.",
+    "error": "No se pudo enviar. Escríbeme por WhatsApp y te respondo enseguida.",
+    "invalid": "Revisa los campos marcados.",
+    "orWrite": "O escríbeme directo",
+    "whatsappText": "Hola PHOLIZ, quiero reservar una sesión."
+  },
+  "footer": {
+    "tagline": "Fotografía y video sin fin.",
+    "rights": "Todos los derechos reservados.",
+    "follow": "Sígueme"
+  },
+  "notFound": {
+    "title": "Esta página no existe",
+    "cta": "Volver al inicio"
+  }
+}

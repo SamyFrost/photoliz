@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "PHOLIZ · Photography & films in Tampa, FL",
+    "description": "Portraits, weddings, quinceañeras, events, brand content and films with clean light and an elegant finish. Tampa, Florida."
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Book your session",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Español",
+    "languageShort": "ES"
+  },
+  "intro": {
+    "skip": "Skip"
+  },
+  "hero": {
+    "eyebrow": "Photography ∞ Films · Tampa, FL",
+    "cta": "Book your session",
+    "secondary": "View portfolio",
+    "scroll": "Scroll"
+  },
+  "home": {
+    "portfolioEyebrow": "Portfolio",
+    "portfolioTitle": "Stories in light",
+    "portfolioCta": "View full portfolio",
+    "servicesEyebrow": "Services",
+    "servicesTitle": "Sessions with an author's care",
+    "servicesText": "Clear packages, clear delivery times and one way of seeing: you, in your best light.",
+    "servicesCta": "View full catalog",
+    "aboutEyebrow": "About me",
+    "aboutCta": "Meet me",
+    "testimonialsEyebrow": "Testimonials",
+    "testimonialsTitle": "What stays",
+    "instagramTitle": "Follow me on Instagram",
+    "ctaTitle": "Keep who you are today.",
+    "ctaText": "Tell me what you have in mind and I'll get back to you with dates and packages.",
+    "marquee": "PHOTOGRAPHY"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Portraits, celebrations, brands and films in one style.",
+    "all": "All",
+    "empty": "Coming soon: new stories in this category.",
+    "placeholder": "Photo coming soon",
+    "view": "View gallery",
+    "films": "Films",
+    "play": "Play",
+    "close": "Close",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Pick a starting point. Every session is tailored to you.",
+    "from": "From",
+    "ask": "Ask for a quote",
+    "favorite": "Favorite",
+    "whatsapp": "Quote on WhatsApp",
+    "quote": "Request a quote",
+    "whatsappText": "Hi PHOLIZ, I'd like a quote for: {service}",
+    "note": "Prices are a starting point; every quote is tailored to the date, location and hours of coverage."
+  },
+  "about": {
+    "title": "About me",
+    "values": "How I work",
+    "gear": "Canon in hand, light on my side.",
+    "cta": "Let's work together",
+    "hello": "HELLO"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Book your session or ask anything. I reply fast.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "service": "Session type",
+    "servicePlaceholder": "Choose an option",
+    "other": "Other",
+    "date": "Approximate date (optional)",
+    "message": "Tell me your idea",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sent": "Thank you! I'll write back very soon.",
+    "error": "It couldn't be sent. Message me on WhatsApp and I'll reply right away.",
+    "invalid": "Please check the highlighted fields.",
+    "orWrite": "Or write to me directly",
+    "whatsappText": "Hi PHOLIZ, I'd like to book a session."
+  },
+  "footer": {
+    "tagline": "Photography and film, endlessly.",
+    "rights": "All rights reserved.",
+    "follow": "Follow me"
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "cta": "Back to home"
+  }
+}
